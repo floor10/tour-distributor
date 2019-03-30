@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { TopBar } from "./components/TopBar";
+import TopBar from "./components/TopBar";
 
-import { Queue } from "./containers/Queue";
+import Queue from "./containers/Queue";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
@@ -24,7 +24,11 @@ export class App extends React.Component {
 
         return (
             <div>
-                <TopBar showQueue={this.state.showQueue} handleShowQueueChange={this.handleShowQueueChange.bind(this)} />
+                <TopBar
+                    showQueue={this.state.showQueue}
+                    handleShowQueueChange={this.handleShowQueueChange.bind(this)}
+                />
+
                 <Grid container spacing={24}>
                     <Grid item xs={12}>
                         {renderPage}
