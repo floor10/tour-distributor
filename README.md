@@ -7,6 +7,6 @@
    * Children count: children_count
    * Best in profession competition (1st, 2nd or 3rd place): best_member
    * Corporate rewards for the last two years: rewards
-   * Experience: expereince
+   * Experience: experience
  * Multiplicative:
    * Years from last vacation
