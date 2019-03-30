@@ -9,5 +9,5 @@
    * Currently applied corporate rewards [int]
    * Experience [int]
  * Multiplicative:
-   * Years from last vacation
-   * Disciplinary sanction
+   * Years from last vacation: prev_vacations
+   * Disciplinary sanction: disciplinary_vacation
