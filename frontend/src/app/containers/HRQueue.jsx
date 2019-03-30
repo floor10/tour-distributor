@@ -3,6 +3,7 @@ import * as ReactDOM from "react-dom";
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormGroup from '@material-ui/core/FormGroup';
+import Button from '@material-ui/core/Button';
 import QueueTable from '../components/QueueTable';
 
 const styles = theme => ({
@@ -33,15 +34,20 @@ class Queue extends React.Component {
         return (
             <div>
                 <FormGroup>
-                        <TextField
-                            id="outlined-search"
-                            label="Search"
-                            type="search"
-                            margin="dense"
-                            variant="outlined"
-                        >
-                        </TextField>
-                    </FormGroup>
+                    <Button variant="contained" color="primary">
+                        Export
+                    </Button>
+                </FormGroup>
+                <FormGroup>
+                    <TextField
+                        id="outlined-search"
+                        label="Search"
+                        type="search"
+                        margin="dense"
+                        variant="outlined"
+                    >
+                    </TextField>
+                </FormGroup>
                 <div style={{ height: 30 }} />
                 <QueueTable rows={rows} />
             </div>);
