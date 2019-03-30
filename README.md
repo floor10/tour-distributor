@@ -1,12 +1,12 @@
 # Tour-Distributor
 
-## List of features to use
+## List of features to use [WIP]
  * Additive:
-   * Single Parent
-   * Guardian
-   * Children count (>= 3 matters)
-   * Best in profession competition (1st, 2nd or 3rd place)
-   * Corporate rewards for the last two years
-   * Experience
- * Non-linear:
-   * Years from last vacation
+   * Single Parent [bool]
+   * Guardian [int]
+   * Children count (>= 3 matters) [int]
+   * Best in profession competition [int] (0, 1, 2 for the last 2 years)
+   * Currently applied corporate rewards [int]
+   * Experience [int]
+ * Multiplicative:
+   * Years from last vacation [int]
