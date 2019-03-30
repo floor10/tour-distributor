@@ -10,4 +10,4 @@
    * Experience: experience
  * Multiplicative:
    * Years from last vacation: prev_vacations
-   * Disciplinary sanction: disciplinary_vacation
+   * Disciplinary sanction: disciplinary_sanction
