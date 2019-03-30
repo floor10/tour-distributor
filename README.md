@@ -1,6 +1,6 @@
 # Tour-Distributor
 
-## List of features to use
+## List of features to use [WIP]
  * Additive:
    * Single Parent: single_parent
    * Guardian: guardian
@@ -8,5 +8,5 @@
    * Best in profession competition (1st, 2nd or 3rd place): best_member
    * Corporate rewards for the last two years: rewards
    * Experience: expereince
- * Non-linear:
+ * Multiplicative:
    * Years from last vacation
