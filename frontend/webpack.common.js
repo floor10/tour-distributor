@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: "./src/main.tsx"
+    app: "./src/main.js"
   },
   output: {
     filename: "[name].bundle.js",
@@ -13,19 +13,22 @@ module.exports = {
   },
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: [".ts", ".tsx", ".js", "json"],
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
     alias: {
       app: path.resolve(__dirname, "src/app")
     }
   },
 
   module: {
-    rules: [
-      // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-      { test: /\.ts|tsx?$/, loader: "awesome-typescript-loader" },
+    rules: [{
+        test: /\.js|jsx?$/,
+        //  loader: "babel-loader"
+        exclude: /node_modules/,
+        loader: "babel-loader"
+      },
 
-      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+      // // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+      // { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
@@ -40,8 +43,10 @@ module.exports = {
   },
 
   plugins: [
-    new CleanWebpackPlugin(['dist']),
-    new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'src/assets/index.html') }),
+    // new CleanWebpackPlugin(['dist']),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'src/assets/index.html')
+    }),
     new webpack.HotModuleReplacementPlugin()
   ]
 };
