@@ -15,11 +15,21 @@ export default (props => (
                     control={
                         <Switch
                             checked={props.showQueue}
-                            onChange={props.handleShowQueueChange()}
+                            onChange={props.showQueueChanged()}
                             value="showQueue"
                         />
                     }
-                    label="Secondary"
+                    label="Application page"
+                />
+                <FormControlLabel
+                    control={
+                        <Switch
+                            checked={props.hrMode}
+                            onChange={props.hrModeChanged()}
+                            value="showQueue"
+                        />
+                    }
+                    label="HR mode"
                 />
             </Toolbar>
         </AppBar>
