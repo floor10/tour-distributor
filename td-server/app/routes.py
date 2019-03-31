@@ -23,28 +23,35 @@ def put_request():
     mongo.db.tour.insert_one({"name": tour_name})
     return jsonify({'msg': "Success"}), 200
 
-MAX_TOUR_COUNT = 100
+MAX_TOUR_COUNT = 10
 
 def _in_top(table_id: int):
-    if mongo.db.tour.find().sort({'score': -1}).limit(MAX_TOUR_COUNT).find({{'table_id': table_id}}):
-        return True
-    return False
+    l = mongo.db.tour.find().sort({'score': -1}).limit(MAX_TOUR_COUNT)
+    if l.find({{'table_id': table_id}}).count() == 0:
+        return -1
+    for i, v in enumerate(l):
+        if v.get('table_id') and v.get('table_id') == table_id:
+            return i
+    return -1
 
 def _get_top():
     return list(mongo.db.tour.find().sort({'score': -1}).limit(MAX_TOUR_COUNT))
 
 def _get_current_list(table_id: int, near=3):
-    cur = mongo.db.tour.find({'table_id': table_id})
-    score = cur.pop()
-    gte = mongo.db.tour.find({'score': {
-        '$gte': curr.score,
+    cur = list(mongo.db.tour.find({'table_id': table_id}))
+    if len(cur) != 1:
+        return 
+    score = cur.pop().get('score')
+    # TODO fix unknown behavior
+    gte = list(mongo.db.tour.find({'score': {
+        '$gte': score,
         '$limit': near} 
-        })
-    lte =  mongo.db.tour.find({'score': {
-        '$lte': curr.score,
+        }))
+    lte = list(mongo.db.tour.find({'score': {
+        '$lte': score,
         '$limit': near} 
-        })
-    return 
+        }))
+    return gte + cur + lte
 
 @app.route('/queue', methods=['GET'])
 def queue():
@@ -53,14 +60,16 @@ def queue():
     result = mongo.db.tour.find(search)
     if not result:
         return jsonify({'error': "Not found"}), 404
-    in_top = _in_top(table_id)
     top_list = _get_top()
+    current_list = []
+    index_in_top = _in_top(table_id)
+    in_top = False if index_in_top == -1 else True
     if not in_top:
-        current_list = _get_current_list()
-    response = {'msg': "Success", 
+        current_list = _get_current_list(table_id)
+    response = {
     'in_top': in_top,
     'top_applications': top_list,
-    'current': 
-
-     }    
-    return jsonify(), 200
+    'current': current_list,
+    'index_in_top': index_in_top
+    }
+    return jsonify(response), 200
