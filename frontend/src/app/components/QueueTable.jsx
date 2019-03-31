@@ -8,8 +8,11 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
+import axios from "axios";
 
-export default (props => (<div>
+export default (props => {
+    // axios.get('/queue')
+    return (<div>
     <Paper>
         <Table>
             <TableHead>
@@ -99,4 +102,4 @@ export default (props => (<div>
             </TableBody>
         </Table>
     </Paper>
-</div>))
+</div>)})

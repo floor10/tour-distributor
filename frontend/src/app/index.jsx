@@ -6,11 +6,12 @@ import Queue from "./containers/Queue";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import HRQueue from "./containers/HRQueue";
+import ApplicationPage from "./containers/ApplicationPage";
 
 export class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { showQueue: true, hrMode: false };
+        this.state = { showQueue: false, hrMode: false };
     }
     handleChange = (name) => () => event => {
         this.setState({ [name]: event.target.checked });
@@ -20,7 +21,7 @@ export class App extends React.Component {
         if (this.state.showQueue) {
             renderPage = this.state.hrMode ? <HRQueue /> : <Queue />;
         } else {
-            renderPage = <p>Oops, something goes wrong</p>;
+            renderPage = <ApplicationPage />
         }
 
         return (
