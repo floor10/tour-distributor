@@ -1,7 +1,7 @@
 from app import app, mongo
 from flask import request
 from flask import jsonify
-from database import create_tour_request
+from model import model
 
 
 @app.route('/rating', methods=['GET'])
@@ -9,15 +9,19 @@ def get_rating():
     return jsonify({'msg': "Success"}), 200
 
 
-@app.route('/put_employee', methods=['PUT'])
-def put_request():
-    employee_name = request.json.get('name', None)
-    mongo.db.employee.insert_one({"name": employee_name})
-    return jsonify({'msg': "Success"}), 200
+@app.route('/applications', methods=['POST'])
+def put_employee():
+    employee_personal_info = mongo.db.pers_info.find_one({'id': id})
+    tour_type = request.json.get('tour_type', None)
+    employee_request = request.get_json()
+    score = model.compute_score(employee_request, model.TourType.FAMILY)
+
+    # mongo.db.employee.insert_one({"name": employee_name})
+    return jsonify({'msg': score}), 200
 
 
 @app.route('/put_tour', methods=['PUT'])
-def put_request():
+def put_tour():
     tour_name = request.json.get('name', None)
     create_tour_request(tour_name)
     mongo.db.tour.insert_one({"name": tour_name})
