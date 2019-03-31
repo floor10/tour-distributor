@@ -1,5 +1,11 @@
 {
-    "table": 1,
-    "name": "АБВ",
-    "experience": 20
+        "single_parent": 0,
+        "guardian": 0,
+        "children_count": 2,
+        "best_member":2,
+        "rewards": 1,
+        "experience": 10,
+        "prev_vacations": [{"type": "family", "date": "2017-03-31"}],
+        "disciplinary_sanction": 0,
+        "name": "Koryun"
 }
